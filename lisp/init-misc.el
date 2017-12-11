@@ -4,6 +4,17 @@
 (add-auto-mode 'tcl-mode "Portfile\\'")
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; disable autosave
+(setq auto-save-default nil)
+;; disable backup file
+(setq make-backup-files nil)
+;; enable clipboard
+(setq select-enable-clipboard t)
+;; set environment coding system
+(set-language-environment "UTF-8")
+;; auto revert buffer globally
+(global-auto-revert-mode t)
+
 (add-hook 'prog-mode-hook 'goto-address-prog-mode)
 (setq goto-address-mail-face 'link)
 

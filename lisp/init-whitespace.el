@@ -24,5 +24,13 @@
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
+;; always add new line to the end of a file
+(setq require-final-newline nil)
+;; add no new lines when "arrow-down key" at the end of a buffer
+(setq next-line-add-newlines nil)
+;; prevent the annoying beep on errors
+(setq ring-bell-function 'ignore)
+;; remove trailing whitespaces before save
+
 
 (provide 'init-whitespace)

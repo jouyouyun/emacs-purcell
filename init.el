@@ -70,6 +70,7 @@
 
 (require 'init-editor)
 (require 'init-whitespace)
+(require 'init-auto-insert)
 ;; (require 'init-pinyin) ;; not found, need add repo
 
 ;; (require 'init-vc)
