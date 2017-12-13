@@ -4,12 +4,6 @@
 (when *is-a-mac*
   (setq-default locate-command "mdfind"))
 
-(when (and (executable-find "ag")
-           (maybe-require-package 'ag))
-  (require-package 'helm-ag)
-  (setq-default ag-highlight-search t)
-  (global-set-key (kbd "M-?") 'helm-ag))
-
 (when (and (executable-find "rg")
            (maybe-require-package 'rg))
   (global-set-key (kbd "M-?") 'rg-project))

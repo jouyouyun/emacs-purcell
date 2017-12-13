@@ -40,7 +40,7 @@
 ;; So for word the expansion is word-wise, for line line-wise,
 ;; for list or sexp, list-wise.
 (global-set-key [remap kill-ring-save] 'easy-kill)
-(global-set-key (kbd "M-s") 'easy-kill)
+(global-set-key (kbd "M-m") 'easy-kill)
 ;; default keybinding
 ;;  M-w w: save word at point
 ;;  M-w s: save sexp at point

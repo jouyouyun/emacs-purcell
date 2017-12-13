@@ -42,4 +42,10 @@
  helm-ff-file-name-history-use-recentf t)
 
 
+(when (and (executable-find "ag")
+           (maybe-require-package 'ag))
+    (require-package 'helm-ag)
+    (setq-default ag-highlight-search t)
+    (global-set-key (kbd "M-?") 'helm-ag))
+
 (provide 'init-helm)
