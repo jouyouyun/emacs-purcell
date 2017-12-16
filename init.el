@@ -86,6 +86,7 @@
 ;; (require 'init-projectile)
 
 (require 'init-c)
+;; (require 'init-rtags)
 (require 'init-textile)
 (require 'init-markdown)
 (require 'init-csv)
