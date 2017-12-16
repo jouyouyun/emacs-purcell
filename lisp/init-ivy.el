@@ -30,7 +30,7 @@
     (interactive (list (thing-at-point 'symbol)))
     (swiper sym))
 
-  (define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point))
+  (define-key ivy-mode-map (kbd "M-s s") 'sanityinc/swiper-at-point))
 
 
 (when (maybe-require-package 'ivy-historian)

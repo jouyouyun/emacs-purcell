@@ -70,14 +70,15 @@
 (require 'init-company)
 (require 'init-window)
 (require 'init-sessions)
-;; (require 'init-mmm)
+(require 'init-mmm)
 
 (require 'init-editor)
 (require 'init-whitespace)
 (require 'init-auto-insert)
+(require 'init-tip)
 ;; (require 'init-pinyin) ;; not found, need add repo
 
-;; (require 'init-vc)
+(require 'init-vc)
 ;; (require 'init-darcs)
 (require 'init-git)
 ;; (require 'init-github)
@@ -90,20 +91,20 @@
 (require 'init-csv)
 (require 'init-golang)
 ;; (require 'init-erlang)
-;; (require 'init-javascript)
-;; (require 'init-php)
+(require 'init-javascript)
+(require 'init-php)
 (require 'init-org)
 (require 'init-nxml)
 (require 'init-html)
 (require 'init-css)
 ;; (require 'init-haml)
-;; (require 'init-http)
-;; (require 'init-python-mode)
+(require 'init-http)
+(require 'init-python)
 ;; (require 'init-haskell)
 ;; (require 'init-ruby-mode)
 ;; (require 'init-rails)
 ;; (require 'init-sql)
-;; (require 'init-rust)
+(require 'init-rust)
 (require 'init-toml)
 (require 'init-yaml)
 (require 'init-docker)
@@ -158,6 +159,10 @@
 
 (when (maybe-require-package 'uptimes)
   (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+
+(wen-eval-after-init
+ ;; greet the use with some useful tip
+ (run-at-time 5 nil 'wen-tip-of-the-day))
 
 
 (provide 'init)

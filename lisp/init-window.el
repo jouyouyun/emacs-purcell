@@ -5,7 +5,7 @@
 
 ;; Default <C-u>
 ;; <M-p> calling 'ace-window', double to cancel 'ace-window'
-(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "M-u") 'ace-window)
 ;; aw-keys default 0-9
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 ;; aw-scope default 'global' show all windows,

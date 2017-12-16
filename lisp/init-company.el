@@ -7,7 +7,6 @@
 (when (maybe-require-package 'company)
   (add-hook 'after-init-hook 'global-company-mode)
   (after-load 'company
-    (define-key company-mode-map (kbd "M-/") 'company-complete)
     (define-key company-active-map (kbd "M-n") 'company-select-next)
     (define-key company-active-map (kbd "M-p") 'company-select-previous)
     (setq-default company-dabbrev-other-buffers 'all
