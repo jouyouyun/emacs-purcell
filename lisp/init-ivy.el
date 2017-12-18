@@ -39,6 +39,19 @@
 (setq-default counsel-mode-override-describe-bindings t)
 (add-hook 'after-init-hook 'counsel-mode)
 
+;; fix env expand
+(setq my-env
+      (mapcar (lambda (s) (split-string s "=" t))
+              (split-string (shell-command-to-string "env") "\n" t)))
+(defun maybe-expand-env ()
+  (interactive)
+  (if (equal ivy-text "")
+      (ivy-read "var: " my-env
+                :action (lambda (x) (insert (cadr x))))
+    (insert "$")))
+(setq enable-recursive-minibuffers t)
+(eval-after-load 'counsel
+      '(define-key counsel-find-file-map (kbd "$") 'maybe-expand-env))
 
 
 ;; (global-set-key (kbd "C-s") 'swiper)
