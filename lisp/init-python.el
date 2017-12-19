@@ -1,6 +1,6 @@
 ;;; 'wen-python.el' --- Emacs python selection.
 
-(require-package 'python-mode)
+(require-package 'python)
 (require-package 'pyenv-mode)
 (require-package 'elpy)
 (require-package 'jedi-core)

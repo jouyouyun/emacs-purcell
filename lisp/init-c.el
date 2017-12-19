@@ -22,11 +22,32 @@
 
 ;; company-c-header
 ;; TODO: set 'company-c-headers-path-system'
+(require 'company-c-headers)
 (defun wen-c-headers-company ()
   (add-to-list 'company-backends 'company-c-headers))
 
 (add-hook 'c-mode-hook 'wen-c-headers-company)
 (add-hook 'c++-mode-hook 'wen-c-headers-company)
+
+;; autocomplete headers
+(defun wen-pkg-config-enable-clang-headers (pkg-config-lib)
+  "This function will add necessary header file path of a
+specified by `pkg-config-lib' to `company-c-headers-path-system`', which make it
+completionable by company-c-headers"
+  (interactive "spkg-config lib: ")
+  (if (executable-find "pkg-config")
+      (if (= (shell-command
+              (format "pkg-config %s" pkg-config-lib))
+             0)
+          (setq company-c-headers-path-system
+                (append company-c-headers-path-system
+                        (split-string
+                         (shell-command-to-string
+                          (format "pkg-config --cflags-only-I %s|sed 's/-I//g'"
+                                  pkg-config-lib)))))
+        (message "Error, pkg-config lib %s not found." pkg-config-lib))
+    (message "Error: pkg-config tool not found.")))
+
 
 ;; autocomplete via company-clang
 (defun wen-pkg-config-enable-clang-flag (pkg-config-lib)
@@ -34,6 +55,7 @@
 specified by `pkg-config-lib' to `company-clang-arguments', which make it
 completionable by company-clang"
   (interactive "spkg-config lib: ")
+  (wen-pkg-config-enable-clang-headers pkg-config-lib)
   (if (executable-find "pkg-config")
       (if (= (shell-command
               (format "pkg-config %s" pkg-config-lib))
@@ -59,24 +81,24 @@ completionable by company-clang"
 
 (defun wen-set-c-clang-args ()
   (set-common-clang-args)
-  (wen-pkg-config-enable-clang-flag "gtk+-3.0")
-  (wen-pkg-config-enable-clang-flag "fontconfig")
-  (wen-pkg-config-enable-clang-flag "popper-glib")
-  (wen-pkg-config-enable-clang-flag "libpulse-mainloop-glib")
-  (wen-pkg-config-enable-clang-flag "librsvg-2.0")
+  (wen-pkg-config-enable-clang-flag "glib-2.0")
+  ;; (wen-pkg-config-enable-clang-flag "gtk+-3.0")
+  ;; (wen-pkg-config-enable-clang-flag "popper-glib")
+  ;; (wen-pkg-config-enable-clang-flag "libpulse-mainloop-glib")
+  ;; (wen-pkg-config-enable-clang-flag "librsvg-2.0")
   (set 'flycheck-clang-args company-clang-arguments)
   )
 
 (defun wen-set-cpp-clang-args ()
   (set-common-clang-args)
-  (wen-pkg-config-enable-clang-flag "Qt5Core")
-  (wen-pkg-config-enable-clang-flag "Qt5Gui")
-  (wen-pkg-config-enable-clang-flag "Qt5Widgets")
-  (wen-pkg-config-enable-clang-flag "Qt5DBus")
-  (wen-pkg-config-enable-clang-flag "Qt5Network")
-  (wen-pkg-config-enable-clang-flag "Qt5Sql")
-  (wen-pkg-config-enable-clang-flag "Qt5Svg")
-  (wen-pkg-config-enable-clang-flag "Qt5Xml")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Core")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Gui")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Widgets")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5DBus")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Network")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Sql")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Svg")
+  ;; (wen-pkg-config-enable-clang-flag "Qt5Xml")
   (set 'flycheck-clang-args company-clang-arguments)
   )
 
