@@ -1,5 +1,4 @@
-(require-package 'tidy)
-(add-hook 'html-mode-hook (lambda () (tidy-build-menu html-mode-map)))
+(add-hook 'html-mode-hook (lambda () (html-mode-map)))
 
 (require-package 'tagedit)
 (after-load 'sgml-mode

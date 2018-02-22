@@ -18,7 +18,6 @@
 ;; deactive 'M-x pyvenv-deactivate'
 (defun wen-elpy-setup()
   (elpy-enable)
-  (elpy-use-ipython)
   (setq elpy-rpc-backend "jedi")
   (setq elpy-rpc-python-command "python")
   (when (require 'flycheck nil t)
